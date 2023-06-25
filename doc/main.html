@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head itemscope="itemscope" itemtype="http://smpte.org/standards/documents">
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script type="module" src="../tooling/smpte.js"></script>
+  <meta itemprop="pubType" content="AG" />
+  <!-- <meta itemprop="pubNumber" content="XX" /> -->
+  <meta itemprop="pubState" content="draft" />
+  <!-- <meta itemprop="pubDateTime" content="20XX-XX-XX" /> -->
+  <title>Document repository structure</title>
+</head>
+
+<body>
+  <section id="sec-scope">
+    <p>This administrative guideline specifies the structure of the standards
+    document repository, which is the canonical collection of documents
+    published by the SMPTE standards community.</p>
+  </section>
+
+  <section id="sec-concepts">
+    <h2>Concepts</h2>
+
+    <section id="sec-repository">
+      <h3>Standards document repository</h3>
+      <p>The <dfn>standards document repository</dfn> is collection of
+      <a>standards documents</a>.</p>
+    </section>
+
+    <section id="sec-document">
+      <h3>Standards document</h3>
+
+      <p>A <dfn>standards document</dfn> is a collection of <a>versions</a>.</p>
+
+      <p>A <a>standards document</a> is associated with the following metadata:</p>
+
+      <dl>
+        <dt>type</dt>
+        <dd>Standard, Recommended Practice, Engineering Guideline or
+        Overview</dd>
+        <dt>number</dt>
+        <dd>Root number of the document</dd>
+        <dt>part</dt>
+        <dd>Part number of the document, if it exists</dd>
+        <dt>state</dt>
+        <dd>Active, Withdrawn or Stabilized</dd>
+        <dt>withdrawal statement</dt>
+        <dd>Text explaining the reasons for the withdrawal, if the document
+        is withdrawn</dd>
+      </dl>
+    </section>
+
+    <section id="sec-version">
+      <h3>Version</h3>
+
+      <p>A <dfn>version</dfn> consists of:</p>
+      <ul>
+        <li>a main prose element;</li>
+        <li>zero or more additional elements;</li>
+        <li>zero or more media;</li>
+      </ul>
+
+      <p>A <a>version</a> is associated with the following metadata:</p>
+
+      <dl>
+        <dt>type</dt>
+        <dd>Standard, Recommended Practice, Engineering Guideline or
+        Overview</dd>
+        <dt>number</dt>
+        <dd>Root number of the document</dd>
+        <dt>part</dt>
+        <dd>Part number of the document, if it exists</dd>
+        <dt>stage</dt>
+        <dd>WD, CD, FCD, DP or PUB</dd>
+        <dt>date</dt>
+        <dd>Publication timestamp</dd>
+      </dl>
+    </section>
+
+  </section>
+
+</body>
+</html>
