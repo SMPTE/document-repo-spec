@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [ "st", "rp", "eg", "ov" ]
+    },
+    "root": {
+      "type": "integer"
+    },
+    "part": {
+      "type": "integer"
+    },
+    "state": {
+      "enum": [ "active", "stabilized", "withdrawn" ]
+    },
+    "statement": {
+      "type": "object",
+      "properties": {
+        "mediaType": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [ "mediaType", "path" ]
+    }
+  },
+  "required": [ "type", "root", "state" ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "stage": {
+      "enum": [ "wd", "cd", "fcd", "dp", "pub" ]
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}(-[0-9]{2}([0-9]{2})?)?$"
+    },
+    "main": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file" }
+    },
+    "media": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file" }
+    },
+    "elements": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z]$": { "$ref": "#/$defs/file" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [ "stage", "timestamp", "main"],
+  "$defs": {
+    "file": {
+      "type": "object",
+      "properties": {
+        "mediaType": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "required": [ "mediaType", "path" ]
+      }
+    }
+  }
+}

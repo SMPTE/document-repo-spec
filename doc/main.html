@@ -40,16 +40,27 @@
         <dt>type</dt>
         <dd>Standard, Recommended Practice, Engineering Guideline or
         Overview</dd>
-        <dt>number</dt>
+        <dt>root</dt>
         <dd>Root number of the document</dd>
         <dt>part</dt>
         <dd>Part number of the document, if it exists</dd>
         <dt>state</dt>
         <dd>Active, Withdrawn or Stabilized</dd>
-        <dt>withdrawal statement</dt>
+        <dt>statement</dt>
         <dd>Text explaining the reasons for the withdrawal, if the document
         is withdrawn</dd>
       </dl>
+
+      <p>No two standards documents shall have the same combination of
+      <i>type</i>, <i>root</i> and <i>part</i>.</p>
+
+      <p>The short name <code>doc-short-name</code> of a standards document
+      is:</p>
+
+      <pre>doc-short-name = type "-" root [ "-" part ]
+type = "st" | "rp" | "eg" | "ov"
+root = 1*digits
+part = 1*digits</pre>
     </section>
 
     <section id="sec-version">
@@ -65,20 +76,105 @@
       <p>A <a>version</a> is associated with the following metadata:</p>
 
       <dl>
-        <dt>type</dt>
-        <dd>Standard, Recommended Practice, Engineering Guideline or
-        Overview</dd>
-        <dt>number</dt>
-        <dd>Root number of the document</dd>
-        <dt>part</dt>
-        <dd>Part number of the document, if it exists</dd>
         <dt>stage</dt>
-        <dd>WD, CD, FCD, DP or PUB</dd>
-        <dt>date</dt>
+        <dd>wd, cd, fcd, dp or pub</dd>
+        <dt>timestamp</dt>
         <dd>Publication timestamp</dd>
+        <dt>main</dt>
+        <dd>List of alternative renderings of the main prose element. Each
+        alternative consists of a path relative to the version directory and a
+        media type. One of the alternatives shall have a media type of
+        <code>text/xml</code> or <code>application/pdf</code>. No two
+        alternatives shall have the same media type.</dd>
+        <dt>elements</dt>
+        <dd>List of additional elements. Each alternative consists of a path
+        relative to the version directory, a media type and a name. The name
+        shall be a single lowercase letter between <i>a</i> and <i>z</i>. No two
+        elements shall have the same name.</dd>
+        <dt>media</dt>
+        <dd>List of media, e.g. illustrations, photos, etc. Each media consists
+        of a path relative to the version directory and a media type.</dd>
       </dl>
+
+      <p>No two versions of a standards document shall have the same <i>timestamp</i>.</p>
+
+      <p>The short name <code>version-short-name</code> of a version is:</p>
+
+      <pre>version-short-name = timestamp "-" stage
+timestamp = 4*digits [ "-" 2*digits [ "-" 2*digits ] ]
+stage = "wd" | "cd" | "fcd" | "pub"</pre>
     </section>
 
+  </section>
+
+  <section id="structure">
+    <h2>Structure</h2>
+
+    <section id="structure-general">
+      <h3>General</h3>
+
+      <p>The <a>standards document repository</a> contains zero or more document
+      directories, each corresponding to a single <a>standards document</a>.</p>
+
+      <p>The name of each document directory shall be the short name of the <a>standards
+      document</a>, in lowercase.</p>
+
+      <p>Each document directory contains one or more version directories, each
+      corresponding to a single <a>version</a>.</p>
+
+      <p>The name of each version directory shall be the short name of the
+      <a>version</a>, in lowercase.</p>
+
+      <div class="example">
+  <pre>
+./
+├─ st-429-12/
+|  ├─ 2023-02-01-wd
+|  ├─ 2023-02-15-cd
+|  ├─ 2023-04-pub
+|  ├─ 2023-06-pub
+├─ eg-433/
+|  ├─ 2001-pub</pre>
+      </div>
+    </section>
+
+    <section id="structure-document">
+      <h3>Document directory</h3>
+
+      <p>A document directory shall contain one file named
+      <code>manifest.json</code>, the document manifest, that conforms to the
+      JSON Schema at <a href="#element-a"></a>.</p>
+
+      <p>All other items of the document directory shall be version
+      directories, as specified at <a href="#structure-version"></a>.</p>
+
+    </section>
+
+    <section id="structure-version">
+      <h3>Version directory</h3>
+
+      <p>A version directory shall contain one file named
+      <code>manifest.json</code>, the version manifest, that conforms to the
+      JSON Schema at <a href="#element-b"></a>.</p>
+
+      <p>All other items of the version directory shall be referenced from
+      the version manifest.</p>
+
+    </section>
+
+  </section>
+
+  <section id="sec-elements">
+    <ol>
+      <li>
+        <a id="element-a" title="JSON Schema for the standards document manifest file"
+        href="./elements/document.schema.json"></a>
+      </li>
+      <li>
+        <a id="element-b" title="JSON Schema for the version manifest file"
+        href="./elements/version.schema.json"></a>
+      </li>
+    </ol>
   </section>
 
 </body>
