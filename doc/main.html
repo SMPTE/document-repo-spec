@@ -32,77 +32,102 @@
     <section id="sec-document">
       <h3>Standards document</h3>
 
-      <p>A <dfn>standards document</dfn> is a collection of <a>versions</a>.</p>
+      <section id="sec-document-general">
+        <h4>General</h4>
 
-      <p>A <a>standards document</a> is associated with the following metadata:</p>
+        <p>A <dfn>standards document</dfn> is a collection of <a>versions</a>.</p>
 
-      <dl>
-        <dt>type</dt>
-        <dd>Standard, Recommended Practice, Engineering Guideline or
-        Overview</dd>
-        <dt>root</dt>
-        <dd>Root number of the document</dd>
-        <dt>part</dt>
-        <dd>Part number of the document, if it exists</dd>
-        <dt>state</dt>
-        <dd>Active, Withdrawn or Stabilized</dd>
-        <dt>statement</dt>
-        <dd>Text explaining the reasons for the withdrawal, if the document
-        is withdrawn</dd>
-      </dl>
+        <p>A <a>standards document</a> is associated with the following metadata:</p>
 
-      <p>No two standards documents shall have the same combination of
-      <i>type</i>, <i>root</i> and <i>part</i>.</p>
+        <dl>
+          <dt>type</dt>
+          <dd>Standard, Recommended Practice, Engineering Guideline or
+          Overview</dd>
+          <dt>root</dt>
+          <dd>Root number of the document</dd>
+          <dt>part</dt>
+          <dd>Part number of the document, if it exists</dd>
+          <dt>state</dt>
+          <dd>Active, Withdrawn or Stabilized</dd>
+          <dt>statement</dt>
+          <dd>Text explaining the reasons for the withdrawal, if the document
+          is withdrawn</dd>
+        </dl>
 
-      <p>The short name <code>doc-short-name</code> of a standards document
-      is:</p>
+        <p>No two standards documents shall have the same combination of
+        <i>type</i>, <i>root</i> and <i>part</i>.</p>
 
-      <pre>doc-short-name = type "-" root [ "-" part ]
+      </section>
+
+      <section id="sec-document-short-name">
+        <h4>Short name</h4>
+
+        <p>The short name <code>doc-short-name</code> of a standards document
+        is:</p>
+
+        <pre>doc-short-name = type root [ "-" part ]
 type = "st" | "rp" | "eg" | "ov"
 root = 1*digits
 part = 1*digits</pre>
+
+        <p class="example">The short name of SMPTE ST 428-24 is <code>st428-24</code>.</p>
+      </section>
+
     </section>
 
     <section id="sec-version">
       <h3>Version</h3>
 
-      <p>A <dfn>version</dfn> consists of:</p>
-      <ul>
-        <li>a main prose element;</li>
-        <li>zero or more additional elements;</li>
-        <li>zero or more media;</li>
-      </ul>
+      <section id="sec-version-general">
+        <h4>General</h4>
 
-      <p>A <a>version</a> is associated with the following metadata:</p>
+        <p>A <dfn>version</dfn> consists of:</p>
+        <ul>
+          <li>a main prose element;</li>
+          <li>zero or more additional elements;</li>
+          <li>zero or more media;</li>
+        </ul>
 
-      <dl>
-        <dt>stage</dt>
-        <dd>wd, cd, fcd, dp or pub</dd>
-        <dt>timestamp</dt>
-        <dd>Publication timestamp</dd>
-        <dt>main</dt>
-        <dd>List of alternative renderings of the main prose element. Each
-        alternative consists of a path relative to the version directory and a
-        media type. One of the alternatives shall have a media type of
-        <code>text/xml</code> or <code>application/pdf</code>. No two
-        alternatives shall have the same media type.</dd>
-        <dt>elements</dt>
-        <dd>List of additional elements. Each alternative consists of a path
-        relative to the version directory, a media type and a name. The name
-        shall be a single lowercase letter between <i>a</i> and <i>z</i>. No two
-        elements shall have the same name.</dd>
-        <dt>media</dt>
-        <dd>List of media, e.g. illustrations, photos, etc. Each media consists
-        of a path relative to the version directory and a media type.</dd>
-      </dl>
+        <p>A <a>version</a> is associated with the following metadata:</p>
 
-      <p>No two versions of a standards document shall have the same <i>timestamp</i>.</p>
+        <dl>
+          <dt>stage</dt>
+          <dd>wd, cd, fcd, dp or pub</dd>
+          <dt>timestamp</dt>
+          <dd>Publication timestamp</dd>
+          <dt>main</dt>
+          <dd>List of alternative renderings of the main prose element. Each
+          alternative consists of a path relative to the version directory and a
+          media type. One of the alternatives shall have a media type of
+          <code>text/xml</code> or <code>application/pdf</code>. No two
+          alternatives shall have the same media type.</dd>
+          <dt>elements</dt>
+          <dd>List of additional elements. Each alternative consists of a path
+          relative to the version directory, a media type and a name. The name
+          shall be a single lowercase letter between <i>a</i> and <i>z</i>. No two
+          elements shall have the same name.</dd>
+          <dt>media</dt>
+          <dd>List of media, e.g. illustrations, photos, etc. Each media consists
+          of a path relative to the version directory and a media type.</dd>
+        </dl>
 
-      <p>The short name <code>version-short-name</code> of a version is:</p>
+        <p>No two versions of a standards document shall have the same <i>timestamp</i>.</p>
 
-      <pre>version-short-name = timestamp "-" stage
-timestamp = 4*digits [ "-" 2*digits [ "-" 2*digits ] ]
+      </section>
+
+      <section id="sec-version-short-name">
+        <h4>Short name</h4>
+
+        <p>The short name <code>version-short-name</code> of a version is:</p>
+
+        <pre>version-short-name = timestamp "-" stage
+timestamp = 4*digits [ 2*digits [ 2*digits ] ]
 stage = "wd" | "cd" | "fcd" | "pub"</pre>
+
+        <p class="example"><code>20230607-wd</code></p>
+
+      </section>
+
     </section>
 
   </section>
