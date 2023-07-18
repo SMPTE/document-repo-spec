@@ -1,0 +1,23 @@
+{
+  "stage": "cd",
+  "timestamp": "2023-05-04",
+  "main": [
+    {
+      "mediaType": "text/html",
+      "path": "index.html"
+    },
+    {
+      "mediaType": "application/pdf",
+      "path": "SMPTE ST 429-16 D-Cinema Packaging — Additional Composition Metadata and Guidelines.pdf"
+    }
+  ],
+  "elements": [
+    {
+      "title": "XML schema document that combined all schema definitions specified herein",
+      "file": {
+        "mediaType": "text/xml",
+        "path": "elements/st0429-16-2014.xsd"
+      }
+    }
+  ]
+}

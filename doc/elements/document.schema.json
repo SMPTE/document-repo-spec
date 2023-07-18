@@ -10,6 +10,9 @@
     "part": {
       "type": "integer"
     },
+    "title": {
+      "type": "string"
+    },
     "state": {
       "enum": [ "active", "stabilized", "withdrawn" ]
     },

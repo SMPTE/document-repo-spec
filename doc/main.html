@@ -43,12 +43,19 @@
           <dt>type</dt>
           <dd>Standard, Recommended Practice, Engineering Guideline or
           Overview</dd>
+
           <dt>root</dt>
           <dd>Root number of the document</dd>
+
           <dt>part</dt>
           <dd>Part number of the document, if it exists</dd>
+
+          <dt>title</dt>
+          <dd>Title of the standards document.</dd>
+
           <dt>state</dt>
           <dd>Active, Withdrawn or Stabilized</dd>
+
           <dt>statement</dt>
           <dd>Text explaining the reasons for the withdrawal, if the document
           is withdrawn</dd>
@@ -111,9 +118,8 @@ part = 1*digits</pre>
 
           <dt>elements</dt>
           <dd>List of additional elements. Each element consists of a path
-          relative to the version directory, a media type and a name. The name
-          shall be a single lowercase letter between <i>a</i> and <i>z</i>. No
-          two elements shall have the same name.</dd>
+          relative to the version directory, a media type and a title. No two
+          elements shall have the same title.</dd>
 
           <dt>media</dt>
           <dd>List of media, e.g. illustrations, photos, etc. Each media consists
@@ -177,7 +183,13 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
 
       <p>A document directory shall contain one file named
       <code>manifest.json</code>, the document manifest, that conforms to the
-      JSON Schema at <a href="#element-a"></a>.</p>
+      JSON Schema at <a href="#element-a"></a>. <a
+      href="#fig-document-example"></a> illustrates such a manifest.</p>
+
+      <figure id="fig-document-example">
+        <pre data-include="snippets/document-example.json"></pre>
+        <figcaption>Sample <code>manifest.json</code> of a document directory.</figcaption>
+      </figure>
 
       <p>All other items of the document directory shall be version
       directories, as specified at <a href="#structure-version"></a>.</p>
@@ -189,7 +201,13 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
 
       <p>A version directory shall contain one file named
       <code>manifest.json</code>, the version manifest, that conforms to the
-      JSON Schema at <a href="#element-b"></a>.</p>
+      JSON Schema at <a href="#element-b"></a>. <a
+      href="#fig-version-example"></a> illustrates such a manifest.</p>
+
+      <figure id="fig-version-example">
+        <pre data-include="snippets/version-example.json"></pre>
+        <figcaption>Sample <code>manifest.json</code> of a version directory.</figcaption>
+      </figure>
 
       <p>All other items of the version directory shall be referenced from
       the version manifest.</p>

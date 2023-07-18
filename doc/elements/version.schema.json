@@ -10,32 +10,33 @@
     },
     "main": {
       "type": "array",
-      "items": { "$ref": "#/$defs/file" }
+      "items": { "$ref": "#/definitions/file" }
     },
     "media": {
       "type": "array",
-      "items": { "$ref": "#/$defs/file" }
+      "items": { "$ref": "#/definitions/file" }
     },
     "elements": {
-      "type": "object",
-      "patternProperties": {
-        "^[a-z]$": { "$ref": "#/$defs/file" }
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "file": { "$ref": "#/definitions/file" }
+        },
+        "required": [ "title", "file" ]
       }
     }
   },
-  "required": [ "stage", "timestamp", "main"],
-  "$defs": {
+  "required": [ "stage", "timestamp", "main" ],
+  "definitions": {
     "file": {
       "type": "object",
       "properties": {
-        "mediaType": {
-          "type": "string"
-        },
-        "path": {
-          "type": "string"
-        },
-        "required": [ "mediaType", "path" ]
-      }
+        "mediaType": { "type": "string" },
+        "path": { "type": "string" }
+      },
+      "required": [ "mediaType", "path" ]
     }
   }
 }
