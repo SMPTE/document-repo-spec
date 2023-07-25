@@ -191,8 +191,9 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
         <figcaption>Sample <code>manifest.json</code> of a document directory.</figcaption>
       </figure>
 
-      <p>All other items of the document directory shall be version
-      directories, as specified at <a href="#structure-version"></a>.</p>
+      <p>All items of the document directory, other than the document manifest
+      itself, shall be version directories, as specified at <a
+      href="#structure-version"></a>.</p>
 
     </section>
 
@@ -202,15 +203,36 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
       <p>A version directory shall contain one file named
       <code>manifest.json</code>, the version manifest, that conforms to the
       JSON Schema at <a href="#element-b"></a>. <a
-      href="#fig-version-example"></a> illustrates such a manifest.</p>
+      href="#fig-version-example"></a> illustrates a version manifest.</p>
 
       <figure id="fig-version-example">
         <pre data-include="snippets/version-example.json"></pre>
         <figcaption>Sample <code>manifest.json</code> of a version directory.</figcaption>
       </figure>
 
-      <p>All other items of the version directory shall be referenced from
-      the version manifest.</p>
+      <p>All items of the version directory, other than the version manifest
+      itself, shall be referenced from the version manifest.</p>
+
+      <div class="example">
+        <pre>
+./
+├─ st429-2/
+|  ├─ manifest.json
+|  ├─ 20230628-cd
+|  |  ├─ manifest.json
+|  |  ├─ index.html
+|  |  ├─ media
+|  |  |  ├─ figure-1.png
+|  |  |  ├─ figure-2.png
+|  |  |  ├─ figure-3.png
+|  |  |  ├─ figure-4.png
+|  |  |  ├─ figure-5.png
+|  |  ├─ static
+|  |  |  ├─ smpte-icon.png
+|  |  |  ├─ smpte-logo.png
+|  |  ├─ SMPTE ST 429-2 D-Cinema Packaging — DCP Operational Constraints.pdf
+</pre>
+      </div>
 
     </section>
 
