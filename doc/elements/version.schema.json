@@ -16,6 +16,10 @@
       "type": "array",
       "items": { "$ref": "#/definitions/file" }
     },
+    "deprecatedDesignations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "elements": {
       "type": "array",
       "items": {
