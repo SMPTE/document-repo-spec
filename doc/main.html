@@ -26,23 +26,23 @@
     <section id="sec-repository">
       <h3>Standards document repository</h3>
       <p>The <dfn>standards document repository</dfn> is collection of
-      <a>standards documents</a>.</p>
+      <a>documents</a>.</p>
     </section>
 
     <section id="sec-document">
-      <h3>Standards document</h3>
+      <h3>Document</h3>
 
       <section id="sec-document-general">
         <h4>General</h4>
 
-        <p>A <dfn>standards document</dfn> is a collection of <a>versions</a>.</p>
+        <p>A <dfn>document</dfn> is a collection of <a>versions</a>.</p>
 
-        <p>A <a>standards document</a> is associated with the following metadata:</p>
+        <p>A <a>document</a> is associated with the following metadata:</p>
 
         <dl>
           <dt>type</dt>
-          <dd>Standard, Recommended Practice, Engineering Guideline or
-          Overview</dd>
+          <dd>Standard, Recommended Practice, Engineering Guideline,
+          Overview, or Registered Disclosure Document</dd>
 
           <dt>root</dt>
           <dd>Root number of the document</dd>
@@ -51,7 +51,7 @@
           <dd>Part number of the document, if it exists</dd>
 
           <dt>title</dt>
-          <dd>Title of the standards document.</dd>
+          <dd>Title of the document.</dd>
 
           <dt>state</dt>
           <dd>Active, Withdrawn or Stabilized</dd>
@@ -61,7 +61,7 @@
           is withdrawn</dd>
         </dl>
 
-        <p>No two standards documents shall have the same combination of
+        <p>No two documents shall have the same combination of
         <i>type</i>, <i>root</i> and <i>part</i>.</p>
 
       </section>
@@ -69,11 +69,11 @@
       <section id="sec-document-short-name">
         <h4>Short name</h4>
 
-        <p>The short name <code>doc-short-name</code> of a standards document
+        <p>The short name <code>doc-short-name</code> of a document
         is:</p>
 
         <pre>doc-short-name = type root [ "-" part ]
-type = "st" | "rp" | "eg" | "ov"
+type = %s"st" | %s"rp" | %s"eg" | %s"ov" | %s"rdd"
 root = 1*digits
 part = 1*digits</pre>
 
@@ -88,8 +88,8 @@ part = 1*digits</pre>
       <section id="sec-version-general">
         <h4>General</h4>
 
-        <p>A <dfn>version</dfn> is an Engineering Document at a given stage and
-        at a given point in time.</p>
+        <p>A <dfn>version</dfn> is a document at a given stage and at a given
+        point in time.</p>
 
         <p>A <a>version</a> consists of:</p>
         <ul>
@@ -102,28 +102,28 @@ part = 1*digits</pre>
 
         <dl>
           <dt>stage</dt>
-          <dd>Stage of the version: working Draft, Committee Draft, Final
+          <dd>Stage of the <a>version</a>: working Draft, Committee Draft, Final
           Committee Draft, Draft Publication or Publication.</dd>
 
           <dt>timestamp</dt>
-          <dd>Year, month and day of the month that the version is
-          published.</dd>
+          <dd>Year, month and day of the month that the <a>version</a> is
+          approved.</dd>
 
           <dt>main</dt>
           <dd>List of alternative renderings of the main prose element. Each
-          alternative consists of a path relative to the version directory and a
+          alternative consists of a path relative to the <a>version directory</a> and a
           media type. One of the alternatives shall have a media type of
-          <code>text/xml</code> or <code>application/pdf</code>. No two
+          <code>text/html</code> or <code>application/pdf</code>. No two
           alternatives shall have the same media type.</dd>
 
           <dt>elements</dt>
           <dd>List of additional elements. Each element consists of a path
-          relative to the version directory, a media type and a title. No two
+          relative to the <a>version directory</a>, a media type and a title. No two
           elements shall have the same title.</dd>
 
           <dt>media</dt>
           <dd>List of media, e.g. illustrations, photos, etc. Each media consists
-          of a path relative to the version directory and a media type.</dd>
+          of a path relative to the <a>version directory</a> and a media type.</dd>
 
           <dt>deprecated designations</dt>
           <dd>List of deprecated designations, if any, that the version was
@@ -131,7 +131,7 @@ part = 1*digits</pre>
           <i>ST 12M-1999</i>.</dd>
         </dl>
 
-        <p>No two versions of a standards document shall have the same <i>timestamp</i>.</p>
+        <p>No two <a>versions</a> shall have the same <i>timestamp</i>.</p>
 
       </section>
 
@@ -140,9 +140,12 @@ part = 1*digits</pre>
 
         <p>The short name <code>version-short-name</code> of a version is:</p>
 
-        <pre>version-short-name = timestamp "-" stage
-timestamp = 4*digits [ 2*digits [ 2*digits ] ]
-stage = "wd" | "cd" | "fcd" | "pub"</pre>
+        <pre>version-short-name = yyyy mm dd "-" stage
+timestamp = yyyy mm dd
+yyyy = 4*digits
+mm = 2*digits
+dd = 2*digits
+stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
         <p class="example"><code>20230607-wd</code></p>
 
@@ -159,15 +162,15 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
       <h3>General</h3>
 
       <p>The <a>standards document repository</a> contains zero or more document
-      directories, each corresponding to a single <a>standards document</a>.</p>
+      directories, each corresponding to a single <a>document</a>.</p>
 
-      <p>The name of each document directory shall be the short name of the <a>standards
-      document</a>, in lowercase.</p>
+      <p>The name of each <a>document directory</a> shall be the short name of the
+      <a>document</a>, in lowercase.</p>
 
-      <p>Each document directory contains one or more version directories, each
+      <p>Each <a>document directory</a> contains one or more <a>version directories</a>, each
       corresponding to a single <a>version</a>.</p>
 
-      <p>The name of each version directory shall be the short name of the
+      <p>The name of each <a>version directory</a> shall be the short name of the
       <a>version</a>, in lowercase.</p>
 
       <div class="example">
@@ -176,28 +179,29 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
 ├─ st429-12/
 |  ├─ 20230201-wd
 |  ├─ 20230215-cd
-|  ├─ 202304-pub
-|  ├─ 202306-pub
+|  ├─ 20230412-pub
+|  ├─ 20230602-pub
 ├─ eg433/
-|  ├─ 2001-pub</pre>
+|  ├─ 20010103-pub</pre>
       </div>
     </section>
 
     <section id="structure-document">
       <h3>Document directory</h3>
 
-      <p>A document directory shall contain one file named
-      <code>manifest.json</code>, the document manifest, that conforms to the
-      JSON Schema at <a href="#element-a"></a>. <a
-      href="#fig-document-example"></a> illustrates such a manifest.</p>
+      <p>A <dfn>document directory</dfn> shall contain one file named
+      <code>manifest.json</code>, the <dfn>document manifest</dfn>, that
+      conforms to the JSON Schema at <a href="#element-a"></a>. <a
+      href="#fig-document-example"></a> illustrates a <a>document
+      manifest</a>.</p>
 
       <figure id="fig-document-example">
         <pre data-include="snippets/document-example.json"></pre>
-        <figcaption>Sample <code>manifest.json</code> of a document directory.</figcaption>
+        <figcaption>Sample <code>manifest.json</code> of a <a>document directory</a>.</figcaption>
       </figure>
 
-      <p>All items of the document directory, other than the document manifest
-      itself, shall be version directories, as specified at <a
+      <p>All items of the <a>document directory</a>, other than the <a>document manifest</a>
+      itself, shall be <a>version directories</a>, as specified at <a
       href="#structure-version"></a>.</p>
 
     </section>
@@ -205,18 +209,18 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
     <section id="structure-version">
       <h3>Version directory</h3>
 
-      <p>A version directory shall contain one file named
-      <code>manifest.json</code>, the version manifest, that conforms to the
-      JSON Schema at <a href="#element-b"></a>. <a
-      href="#fig-version-example"></a> illustrates a version manifest.</p>
+      <p>A <dfn data-lt="version directories">version directory</dfn> shall
+      contain one file named <code>manifest.json</code>, the <dfn>version manifest</dfn>,
+      that conforms to the JSON Schema at <a href="#element-b"></a>. <a
+      href="#fig-version-example"></a> illustrates a <a>version manifest</a>.</p>
 
       <figure id="fig-version-example">
         <pre data-include="snippets/version-example.json"></pre>
-        <figcaption>Sample <code>manifest.json</code> of a version directory.</figcaption>
+        <figcaption>Sample <code>manifest.json</code> of a <a>version directory</a>.</figcaption>
       </figure>
 
-      <p>All items of the version directory, other than the version manifest
-      itself, shall be referenced from the version manifest.</p>
+      <p>All items of the <a>version directory</a>, other than the <a>version manifest</a>
+      itself, shall be referenced from the <a>version manifest</a>.</p>
 
       <div class="example">
         <pre>
@@ -246,7 +250,7 @@ stage = "wd" | "cd" | "fcd" | "pub"</pre>
   <section id="sec-elements">
     <ol>
       <li>
-        <a id="element-a" title="JSON Schema for the standards document manifest file"
+        <a id="element-a" title="JSON Schema for the document manifest file"
         href="./elements/document.schema.json"></a>
       </li>
       <li>
