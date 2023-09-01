@@ -129,6 +129,10 @@ part = 1*digits</pre>
           <dd>List of deprecated designations, if any, that the version was
           previously cited as, e.g., <i>ST 12:1999</i> was previously cited as
           <i>ST 12M-1999</i>.</dd>
+
+          <dt>amends</dt>
+          <dd>If present, contains (i) the <code>version-short-name</code> of
+          the version that is amended and (ii) the amendment number.</dd>
         </dl>
 
         <p>No two <a>versions</a> shall have the same <i>timestamp</i>.</p>
@@ -140,14 +144,17 @@ part = 1*digits</pre>
 
         <p>The short name <code>version-short-name</code> of a version is:</p>
 
-        <pre>version-short-name = yyyy mm dd "-" stage
+        <pre>version-short-name = yyyy mm dd [ %s"-am" amnumber ] "-" stage
 timestamp = yyyy mm dd
 yyyy = 4*digits
 mm = 2*digits
 dd = 2*digits
+amnumber = 1*digits
 stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
         <p class="example"><code>20230607-wd</code></p>
+
+        <p class="example"><code>20130107-am1-pub</code></p>
 
       </section>
 
@@ -181,6 +188,7 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 |  ├─ 20230215-cd
 |  ├─ 20230412-pub
 |  ├─ 20230602-pub
+|  ├─ 20230815-am1-wd
 ├─ eg433/
 |  ├─ 20010103-pub</pre>
       </div>
