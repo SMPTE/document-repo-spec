@@ -25,8 +25,31 @@
 
     <section id="sec-repository">
       <h3>Standards document repository</h3>
-      <p>The <dfn>standards document repository</dfn> is collection of
-      <a>documents</a>.</p>
+      <p>The <dfn>standards document repository</dfn> is collection of <a>suites</a>.</p>
+    </section>
+
+    <section id="sec-suite">
+      <h3>Suite</h3>
+
+      <p>A <dfn>suite</dfn> is a collection of all <a>documents</a> with the
+      same root number.</p>
+
+      <p>A <a>suite</a> is associated with the following metadata:</p>
+
+      <dl>
+        <dt>root</dt>
+        <dd>Root number of the suite</dd>
+
+        <dt>title</dt>
+        <dd>Title of the suite.</dd>
+      </dl>
+
+      <p>No two suites shall have the same <i>root</i>.</p>
+
+      <p class="example">SMPTE ST 377-1 and SMPTE ST 377 belong to the suite of
+      document with a root number of 377 and the suite title of <em>Material
+      Exchange Format (MXF)</em>.</p>
+
     </section>
 
     <section id="sec-document">
@@ -44,14 +67,11 @@
           <dd>Standard, Recommended Practice, Engineering Guideline,
           Overview, or Registered Disclosure Document</dd>
 
-          <dt>root</dt>
-          <dd>Root number of the document</dd>
-
           <dt>part</dt>
-          <dd>Part number of the document, if it exists</dd>
+          <dd>Part number of the document, if it exists.</dd>
 
           <dt>title</dt>
-          <dd>Title of the document.</dd>
+          <dd>Title of the part, if the document is a part.</dd>
 
           <dt>state</dt>
           <dd>Active, Withdrawn or Stabilized</dd>
@@ -61,8 +81,16 @@
           is withdrawn</dd>
         </dl>
 
-        <p>No two documents shall have the same combination of
-        <i>type</i>, <i>root</i> and <i>part</i>.</p>
+        <p>No two <a>documents</a> shall have the same combination of
+        <i>type</i> and <i>part</i>.</p>
+
+        <p class="example">Both SMPTE ST 377-1 and SMPTE ST 377 have a document
+        title of <em>File Format Specification</em>, but only SMPTE ST 377-1 has
+        a part number, which is equal to 1.</p>
+
+        <p class="note">The complete title of a <a>document</a> is usually
+        styled as the title of the suite followed, if the document is a part, by
+        the title of the part separated by an em-dash</p>
 
       </section>
 
@@ -129,6 +157,10 @@ part = 1*digits</pre>
           <dd>List of deprecated designations, if any, that the version was
           previously cited as, e.g., <i>ST 12:1999</i> was previously cited as
           <i>ST 12M-1999</i>.</dd>
+
+          <dt>amends</dt>
+          <dd>If present, contains (i) the <code>version-short-name</code> of
+          the version that is amended and (ii) the amendment number.</dd>
         </dl>
 
         <p>No two <a>versions</a> shall have the same <i>timestamp</i>.</p>
@@ -140,14 +172,17 @@ part = 1*digits</pre>
 
         <p>The short name <code>version-short-name</code> of a version is:</p>
 
-        <pre>version-short-name = yyyy mm dd "-" stage
+        <pre>version-short-name = yyyy mm dd [ %s"-am" amend ] "-" stage
 timestamp = yyyy mm dd
 yyyy = 4*digits
 mm = 2*digits
 dd = 2*digits
+amend = 1*digits
 stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
         <p class="example"><code>20230607-wd</code></p>
+
+        <p class="example"><code>20130107-am1-pub</code></p>
 
       </section>
 
@@ -161,37 +196,69 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
     <section id="structure-general">
       <h3>General</h3>
 
-      <p>The <a>standards document repository</a> contains zero or more document
-      directories, each corresponding to a single <a>document</a>.</p>
+      <p>The <a>standards document repository</a> contains zero or more
+      directories, each corresponding to a single <a>suite</a>.</p>
 
-      <p>The name of each <a>document directory</a> shall be the short name of the
-      <a>document</a>, in lowercase.</p>
+      <p>The name of each <a>suite directory</a> shall be the root number of the
+      <a>suite</a>, in lowercase.</p>
 
-      <p>Each <a>document directory</a> contains one or more <a>version directories</a>, each
-      corresponding to a single <a>version</a>.</p>
+      <p>Each <a>suite directory</a> contains one or more <a>document
+      directories</a>, each corresponding to a single <a>document</a>.</p>
+
+      <p>The name of each <a>document directory</a> shall be the short name of
+      the <a>document</a>, in lowercase.</p>
+
+      <p>Each <a>document directory</a> contains one or more <a>version
+      directories</a>, each corresponding to a single <a>version</a>.</p>
 
       <p>The name of each <a>version directory</a> shall be the short name of the
       <a>version</a>, in lowercase.</p>
 
       <div class="example">
   <pre>
-./
-├─ st429-12/
-|  ├─ 20230201-wd
-|  ├─ 20230215-cd
-|  ├─ 20230412-pub
-|  ├─ 20230602-pub
-├─ eg433/
-|  ├─ 20010103-pub</pre>
+├─ 43/
+|  ├─ eg43/
+|  |  ├─ 20091023-pub/
+├─ 377/
+|  ├─ st377/
+|  |  ├─ 20040922-pub/
+|  ├─ st377-1/
+|  |  ├─ 20110607-pub/
+├─ 428/
+|  ├─ st428-4/
+|  |  ├─ 20230628-cd/
+├─ 429/
+|  ├─ st429-2/
+|  |  ├─ 20110923-pub/
+|  |  ├─ 20130116-am1-pub/</pre>
       </div>
+    </section>
+
+    <section id="structure-suite">
+      <h3>Suite directory</h3>
+
+      <p>A <dfn>suite directory</dfn> shall contain one file named
+      <code>manifest.json</code>, the <dfn>suite manifest</dfn>, that
+      conforms to the JSON Schema at <a href="#element-a"></a>. <a
+      href="#fig-suite-example"></a> illustrates a <a>document
+      manifest</a>.</p>
+
+      <figure id="fig-suite-example">
+        <pre data-include="snippets/suite-example.json"></pre>
+        <figcaption>Sample <code>manifest.json</code> of a <a>suite
+        directory</a>.</figcaption>
+      </figure>
+
+      <p>All items of the <a>suite directory</a>, other than the <a>suite
+      manifest</a> itself, shall be one or more <a>document directories</a>.</p>
     </section>
 
     <section id="structure-document">
       <h3>Document directory</h3>
 
-      <p>A <dfn>document directory</dfn> shall contain one file named
+      <p>A <dfn data-lt="document directories">document directory</dfn> shall contain one file named
       <code>manifest.json</code>, the <dfn>document manifest</dfn>, that
-      conforms to the JSON Schema at <a href="#element-a"></a>. <a
+      conforms to the JSON Schema at <a href="#element-b"></a>. <a
       href="#fig-document-example"></a> illustrates a <a>document
       manifest</a>.</p>
 
@@ -201,8 +268,7 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
       </figure>
 
       <p>All items of the <a>document directory</a>, other than the <a>document manifest</a>
-      itself, shall be <a>version directories</a>, as specified at <a
-      href="#structure-version"></a>.</p>
+      itself, shall be <a>version directories</a>.</p>
 
     </section>
 
@@ -211,7 +277,7 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
       <p>A <dfn data-lt="version directories">version directory</dfn> shall
       contain one file named <code>manifest.json</code>, the <dfn>version manifest</dfn>,
-      that conforms to the JSON Schema at <a href="#element-b"></a>. <a
+      that conforms to the JSON Schema at <a href="#element-c"></a>. <a
       href="#fig-version-example"></a> illustrates a <a>version manifest</a>.</p>
 
       <figure id="fig-version-example">
@@ -224,22 +290,22 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
       <div class="example">
         <pre>
-./
-├─ st429-2/
-|  ├─ manifest.json
-|  ├─ 20230628-cd
+├─ 429/
+|  ├─ st429-2/
 |  |  ├─ manifest.json
-|  |  ├─ index.html
-|  |  ├─ media
-|  |  |  ├─ figure-1.png
-|  |  |  ├─ figure-2.png
-|  |  |  ├─ figure-3.png
-|  |  |  ├─ figure-4.png
-|  |  |  ├─ figure-5.png
-|  |  ├─ static
-|  |  |  ├─ smpte-icon.png
-|  |  |  ├─ smpte-logo.png
-|  |  ├─ SMPTE ST 429-2 D-Cinema Packaging — DCP Operational Constraints.pdf
+|  |  ├─ 20230628-cd
+|  |  |  ├─ manifest.json
+|  |  |  ├─ index.html
+|  |  |  ├─ media
+|  |  |  |  ├─ figure-1.png
+|  |  |  |  ├─ figure-2.png
+|  |  |  |  ├─ figure-3.png
+|  |  |  |  ├─ figure-4.png
+|  |  |  |  ├─ figure-5.png
+|  |  |  ├─ static
+|  |  |  |  ├─ smpte-icon.png
+|  |  |  |  ├─ smpte-logo.png
+|  |  |  ├─ SMPTE ST 429-2 D-Cinema Packaging — DCP Operational Constraints.pdf
 </pre>
       </div>
 
@@ -250,11 +316,15 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
   <section id="sec-elements">
     <ol>
       <li>
-        <a id="element-a" title="JSON Schema for the document manifest file"
+        <a id="element-a" title="JSON Schema for the suite manifest file"
+        href="./elements/suite.schema.json"></a>
+      </li>
+      <li>
+        <a id="element-b" title="JSON Schema for the document manifest file"
         href="./elements/document.schema.json"></a>
       </li>
       <li>
-        <a id="element-b" title="JSON Schema for the version manifest file"
+        <a id="element-c" title="JSON Schema for the version manifest file"
         href="./elements/version.schema.json"></a>
       </li>
     </ol>

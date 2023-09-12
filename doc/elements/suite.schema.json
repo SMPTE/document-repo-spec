@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "root": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [ "root", "title" ]
+}
