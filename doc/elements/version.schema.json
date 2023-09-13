@@ -30,6 +30,18 @@
         },
         "required": [ "title", "file" ]
       }
+    },
+    "amends": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "number": {
+          "type": "integer"
+        }
+      },
+      "required": [ "version", "number" ]
     }
   },
   "required": [ "stage", "timestamp", "main" ],

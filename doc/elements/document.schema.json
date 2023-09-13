@@ -4,11 +4,9 @@
     "type": {
       "enum": [ "st", "rp", "eg", "ov" ]
     },
-    "root": {
-      "type": "integer"
-    },
     "part": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0
     },
     "title": {
       "type": "string"
@@ -29,5 +27,5 @@
       "required": [ "mediaType", "path" ]
     }
   },
-  "required": [ "type", "root", "state" ]
+  "required": [ "type", "state" ]
 }
