@@ -25,14 +25,13 @@
 
     <section id="sec-repository">
       <h3>Standards document repository</h3>
-      <p>The <dfn>standards document repository</dfn> is collection of <a>suites</a>.</p>
+      <p>The <dfn>standards document repository</dfn> is collection of <a>documents</a> and <a>suites</a>.</p>
     </section>
 
     <section id="sec-suite">
       <h3>Suite</h3>
 
-      <p>A <dfn>suite</dfn> is a collection of all <a>documents</a> with the
-      same root number.</p>
+      <p>A <dfn>suite</dfn> is a collection of related <a>documents</a>.</p>
 
       <p>A <a>suite</a> is associated with the following metadata:</p>
 
@@ -44,10 +43,10 @@
         <dd>Title of the suite.</dd>
       </dl>
 
-      <p>No two suites shall have the same <i>root</i>.</p>
+      <p>No two <a>suites</a> shall have the same <i>root</i>.</p>
 
-      <p class="example">SMPTE ST 377-1 and SMPTE ST 377 belong to the suite of
-      document with a root number of 377 and the suite title of <em>Material
+      <p class="example">SMPTE ST 377-1 and SMPTE ST 377-4 belong to the suite
+      of document with a root number of 377 and the suite title of <em>Material
       Exchange Format (MXF)</em>.</p>
 
     </section>
@@ -67,11 +66,11 @@
           <dd>Standard, Recommended Practice, Engineering Guideline,
           Overview, or Registered Disclosure Document</dd>
 
-          <dt>part</dt>
-          <dd>Part number of the document, if it exists.</dd>
+          <dt>Number</dt>
+          <dd>Number of the document.</dd>
 
           <dt>title</dt>
-          <dd>Title of the part, if the document is a part.</dd>
+          <dd>Title of the document.</dd>
 
           <dt>state</dt>
           <dd>Active, Withdrawn or Stabilized</dd>
@@ -81,12 +80,11 @@
           is withdrawn</dd>
         </dl>
 
-        <p>No two <a>documents</a> shall have the same combination of
-        <i>type</i> and <i>part</i>.</p>
+        <p>No two <a>documents</a> shall have the same short name, as specified
+        at <a href="#sec-document-short-name"></a>.</p>
 
-        <p class="example">Both SMPTE ST 377-1 and SMPTE ST 377 have a document
-        title of <em>File Format Specification</em>, but only SMPTE ST 377-1 has
-        a part number, which is equal to 1.</p>
+        <p>When a document is part of a <a>suite</a>, the number of the document
+        is the part number.</p>
 
         <p class="note">The complete title of a <a>document</a> is usually
         styled as the title of the suite followed, if the document is a part, by
@@ -100,10 +98,10 @@
         <p>The short name <code>doc-short-name</code> of a document
         is:</p>
 
-        <pre>doc-short-name = type root [ "-" part ]
+        <pre>doc-short-name = type [ root-number "-" ] document-number
 type = %s"st" | %s"rp" | %s"eg" | %s"ov" | %s"rdd"
-root = 1*digits
-part = 1*digits</pre>
+root-number = 1*digits
+document-number = 1*digits</pre>
 
         <p class="example">The short name of SMPTE ST 428-24 is <code>st428-24</code>.</p>
       </section>
@@ -197,31 +195,16 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
       <h3>General</h3>
 
       <p>The <a>standards document repository</a> contains zero or more
-      directories, each corresponding to a single <a>suite</a>.</p>
-
-      <p>The name of each <a>suite directory</a> shall be the root number of the
-      <a>suite</a>, in lowercase.</p>
-
-      <p>Each <a>suite directory</a> contains one or more <a>document
-      directories</a>, each corresponding to a single <a>document</a>.</p>
-
-      <p>The name of each <a>document directory</a> shall be the short name of
-      the <a>document</a>, in lowercase.</p>
-
-      <p>Each <a>document directory</a> contains one or more <a>version
-      directories</a>, each corresponding to a single <a>version</a>.</p>
-
-      <p>The name of each <a>version directory</a> shall be the short name of the
-      <a>version</a>, in lowercase.</p>
+      directories, each corresponding to either a <a>suite directory</a> or
+      <a>document directory</a>.</p>
 
       <div class="example">
   <pre>
-├─ 43/
-|  ├─ eg43/
-|  |  ├─ 20091023-pub/
+├─ eg43/
+|  ├─ 20091023-pub/
+├─ st377/
+|  ├─ 20040922-pub/
 ├─ 377/
-|  ├─ st377/
-|  |  ├─ 20040922-pub/
 |  ├─ st377-1/
 |  |  ├─ 20110607-pub/
 ├─ 428/
@@ -236,6 +219,14 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
     <section id="structure-suite">
       <h3>Suite directory</h3>
+
+      <p>A <a>suite directory</a> corresponds to a single <a>suite</a>.</p>
+
+      <p>The name of each <a>suite directory</a> shall be the root number of the
+      <a>suite</a>, in lowercase.</p>
+
+      <p>Each <a>suite directory</a> contains one or more <a>document
+      directories</a>, each corresponding to a single <a>document</a>.</p>
 
       <p>A <dfn>suite directory</dfn> shall contain one file named
       <code>manifest.json</code>, the <dfn>suite manifest</dfn>, that
@@ -256,6 +247,14 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
     <section id="structure-document">
       <h3>Document directory</h3>
 
+      <p>A <a>document directory</a> corresponds to a single <a>document</a>.</p>
+
+      <p>The name of each <a>document directory</a> shall be the short name of
+      the <a>document</a>, in lowercase.</p>
+
+      <p>Each <a>document directory</a> contains one or more <a>version
+      directories</a>, each corresponding to a single <a>version</a>.</p>
+
       <p>A <dfn data-lt="document directories">document directory</dfn> shall contain one file named
       <code>manifest.json</code>, the <dfn>document manifest</dfn>, that
       conforms to the JSON Schema at <a href="#element-b"></a>. <a
@@ -274,6 +273,11 @@ stage = %s"wd" | %s"cd" | %s"fcd" | %s"pub"</pre>
 
     <section id="structure-version">
       <h3>Version directory</h3>
+
+      <p>A <a>version directory</a> corresponds to a single <a>version</a>.</p>
+
+      <p>The name of each <a>version directory</a> shall be the short name of the
+      <a>version</a>, in lowercase.</p> 
 
       <p>A <dfn data-lt="version directories">version directory</dfn> shall
       contain one file named <code>manifest.json</code>, the <dfn>version manifest</dfn>,
