@@ -2,5 +2,8 @@
   "type": "st",
   "part": 2,
   "title": "DCP Operational Constraints",
-  "state": "active"
+  "state": "active",
+  "icsSet": [
+    "37.060.99"
+  ]
 }

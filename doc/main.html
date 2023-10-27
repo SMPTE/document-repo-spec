@@ -20,6 +20,21 @@
     published by the SMPTE standards community.</p>
   </section>
 
+  <section id="sec-normative-references">
+    <ul>
+      <li><cite id="bib-ICS">International Classification for Standards
+      (ICS)</cite>, International Organization for Standardization (ISO). 
+      <a>https://www.iso.org/publication/PUB100033.html</a></li>
+
+      <li><cite id="bib-iso-26324">ISO 26324</cite>, Information and
+      documentation – Digital object identifier</cite>.</li>
+
+      <li><cite id="bib-iso-2108">ISO 2108</cite>, Information and documentation
+      – International Standard Book Number (ISBN)</cite>.</li>
+
+    </ul>
+  </section>
+
   <section id="sec-concepts">
     <h2>Concepts</h2>
 
@@ -76,8 +91,17 @@
           <dd>Active, Withdrawn or Stabilized</dd>
 
           <dt>statement</dt>
-          <dd>Text explaining the reasons for the withdrawal, if the document
-          is withdrawn</dd>
+          <dd>If the state is Withdrawn or Stabilized, the statement contains
+          the date the state last changed and, if the state is Withdrawn,
+          additionally contains text explaining the reasons for the withdrawal.</dd>
+
+          <dt>icsSet</dt>
+          <dd>If present, contains a set of one or more ICS numbers for the
+          document, as specified in <a href="#bib-ICS"></a>.</dd>
+
+          <dt>notes</dt>
+          <dd>If present, contains informative notes about the document in the
+          context of the <a>standards document repository</a>.</dd>
         </dl>
 
         <p>No two <a>documents</a> shall have the same short name, as specified
@@ -131,7 +155,7 @@ document-number = 1*digits</pre>
           <dd>Stage of the <a>version</a>: working Draft, Committee Draft, Final
           Committee Draft, Draft Publication or Publication.</dd>
 
-          <dt>timestamp</dt>
+          <dt>approved</dt>
           <dd>Year, month and day of the month that the <a>version</a> is
           approved.</dd>
 
@@ -159,9 +183,23 @@ document-number = 1*digits</pre>
           <dt>amends</dt>
           <dd>If present, contains (i) the <code>version-short-name</code> of
           the version that is amended and (ii) the amendment number.</dd>
+
+          <dt>doi</dt>
+          <dd>If present, contains a DOI number for the <a>version</a>, as
+          specified in <a href="bib-iso-26324"></a>.</dd>
+
+          <dt>isbn</dt>
+          <dd>If present, contains an ISBN number for the <a>version</a>, as
+          specified in <a href="bib-iso-2108"></a>.</dd>
+
+          <dt>notes</dt>
+          <dd>If present, contains informative notes about the version in the
+          context of the <a>standards document repository</a>.</dd>
         </dl>
 
-        <p>No two <a>versions</a> shall have the same <i>timestamp</i>.</p>
+        <p>No two <a>versions</a> shall have the same
+        <code>version-short-name</code> as specified at <a
+        href="#sec-version-short-name"></a>.</p>
 
       </section>
 
@@ -171,7 +209,7 @@ document-number = 1*digits</pre>
         <p>The short name <code>version-short-name</code> of a version is:</p>
 
         <pre>version-short-name = yyyy mm dd [ %s"-am" amend ] "-" stage
-timestamp = yyyy mm dd
+approved = yyyy mm dd
 yyyy = 4*digits
 mm = 2*digits
 dd = 2*digits

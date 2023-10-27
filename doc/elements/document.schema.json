@@ -4,7 +4,7 @@
     "type": {
       "enum": [ "st", "rp", "eg", "ov" ]
     },
-    "part": {
+    "number": {
       "type": "integer",
       "minimum": 0
     },
@@ -14,14 +14,31 @@
     "state": {
       "enum": [ "active", "stabilized", "withdrawn" ]
     },
+    "icsSet": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
     "statement": {
       "type": "object",
       "properties": {
-        "mediaType": {
-          "type": "string"
+        "date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"
         },
-        "path": {
-          "type": "string"
+        "file": {
+          "type": "object",
+          "properties": {
+            "mediaType": { "type": "string" },
+            "path": { "type": "string" }
+          },
+          "required": [ "date" ]
         }
       },
       "required": [ "mediaType", "path" ]
