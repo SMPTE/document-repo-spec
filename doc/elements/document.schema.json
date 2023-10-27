@@ -14,7 +14,7 @@
     "state": {
       "enum": [ "active", "stabilized", "withdrawn" ]
     },
-    "icsSet": {
+    "icsNumbers": {
       "type": "array",
       "uniqueItems": true,
       "items": {
