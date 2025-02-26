@@ -1,4 +1,4 @@
-# SMPTE document repository
+# SMPTE _AG-28_ - _Document Library: Repo Spec (Structure)_
 
 _This repository is private._
 
