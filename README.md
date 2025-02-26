@@ -6,7 +6,6 @@ Specification for the SMPTE document repository.
 
 * [Latest version](https://doc.smpte-doc.org/document-repo-spec/main/)
 * [Latest version (all artifacts)](https://doc.smpte-doc.org/document-repo-spec/main/pub-artifacts.html)
-[Documentation](https://doc.smpte-doc.org/document-repo-spec/main/)
 
 Please consult [CONTRIBUTING.md](./CONTRIBUTING.md), [CONFIDENTIALITY.md](./CONFIDENTIALITY.md), [LICENSE](./LICENSE) and
 [PATENTS.md](./PATENTS.md) for important notices.
