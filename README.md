@@ -1,6 +1,6 @@
 # SMPTE _AG-28_ - _Document Library: Repo Spec (Structure)_
 
-This repository is *private*.
+This repository is *public*.
 
 Specification for the SMPTE document repository.
 
