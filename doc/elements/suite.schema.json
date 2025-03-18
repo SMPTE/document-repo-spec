@@ -7,6 +7,10 @@
     },
     "title": {
       "type": "string"
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^10\\.5594\/[A-Za-z\\d-\\.]+$"
     }
   },
   "required": [ "root", "title" ]
