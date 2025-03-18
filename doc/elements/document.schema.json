@@ -24,7 +24,7 @@
     },
     "doi": {
       "type": "string",
-      "pattern": "^10\\.5594\\/SMPTE\\.?[A-Za-z\\d-\\/.]+$"
+      "pattern": "^10\\.5594\/[A-Za-z\\d-\\.]+$"
     },
     "notes": {
       "type": "string"
